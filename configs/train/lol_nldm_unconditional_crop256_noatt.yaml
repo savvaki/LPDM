@@ -1,0 +1,78 @@
+model:
+  base_learning_rate: 1.0e-06
+  target: ldm.models.diffusion.ddpm.DDPM
+  params:
+    linear_start: 0.00085 # For the variance schedule
+    linear_end: 0.0120 # For the variance schedule
+    log_every_t: 200 
+    timesteps: 1000
+    first_stage_key: t
+    image_size: 256 
+    channels: 3
+    monitor: val/loss_simple_ema
+    original_elbo_weight: 0.001 # Apply elbo to loss
+    # scale_factor: 0.18215
+    use_ema: False
+
+    # scheduler_config: # 10000 warmup steps
+    #   target: ldm.lr_scheduler.LambdaLinearScheduler
+    #   params:
+    #     warm_up_steps: [ 10000 ]
+    #     cycle_lengths: [ 10000000000000 ] # incredibly large number to prevent corner cases
+    #     f_start: [ 1.e-6 ]
+    #     f_max: [ 1. ]
+    #     f_min: [ 1. ]
+
+    unet_config:
+      target: ldm.modules.diffusionmodules.openaimodel.UNetModel
+      params:
+        image_size: 256 # unused
+        in_channels: 3 # Changed because we concat z + c 
+        out_channels: 3
+        model_channels: 128
+        attention_resolutions: [ ]
+        num_res_blocks: 2
+        channel_mult: [ 1, 2, 4, 4 ]
+        num_heads: 8
+        use_spatial_transformer: False # Don't use spatial transformer for now
+        # transformer_depth: 1
+        # context_dim: 768 # Bug in SpatialAttention
+        use_checkpoint: True # Uses the special checkpoint function to save memory at the expense of time
+        legacy: False
+
+data:
+  target: main.DataModuleFromConfig
+  params:
+    batch_size: 4
+    num_workers: 10
+    wrap: false
+    train:
+      target: ldm.data.lol.LOLTrain
+      params:
+        dir_data: datasets/
+        crop_size: 256
+    validation:
+      target: ldm.data.lol.LOLValidation
+      params:
+        dir_data: datasets/
+        crop_size: 256
+
+
+lightning:
+  callbacks:
+    image_logger:
+      target: main.ImageLogger
+      params:
+        batch_frequency: 500 # How often to log training
+        val_epoch_frequency: 10 # How often to log validation
+        # max_images: 8
+        increase_log_steps: False #### 
+        log_images_kwargs:
+          ddim_steps: 50
+          inpaint : false
+          plot_progressive_rows : false
+          sample : false
+          plot_diffusion_rows: false
+  trainer:
+    benchmark: True
+    accumulate_grad_batches: 8 # Simulate batch size 36

@@ -1,0 +1,4 @@
+pred_path: ../test/denoised/lpdm_lol/phi300_s30/*.png
+target_path: ../datasets/lol/eval15/high/*.png
+description: Metrics for method (eta) 
+dataset: LOL validation

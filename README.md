@@ -1,4 +1,4 @@
-# Denoising Diffusion Post-Proecssing for Low-Light Image Enhancement
+# Denoising Diffusion Post-Processing for Low-Light Image Enhancement
 
 
 [![paper](https://img.shields.io/badge/arXiv-Paper-<COLOR>.svg)](https://arxiv.org/pdf/2303.09627.pdf)

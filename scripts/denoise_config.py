@@ -113,6 +113,7 @@ with torch.no_grad():
             continue
 
         p, c = pil_to_tensor_in_range(Image.open(p_path)).unsqueeze(0), pil_to_tensor_in_range(Image.open(c_path)).unsqueeze(0)
+        p, c = p.to(device), c.to(device)
         if  p.shape[-1] >= 2000 or p.shape[-2] >=2000:
                 if args.skip_large:
                     print(f'Skipping large image of size: {p.shape}')

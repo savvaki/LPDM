@@ -89,14 +89,16 @@ Set up and activate the virtual [conda](https://docs.anaconda.com/anaconda/insta
 ----
 ## BibTeX Citation
 
-```
-@misc{panagiotou2023denoising,
-      title={Denoising Diffusion Post-Processing for Low-Light Image Enhancement}, 
-      author={Savvas Panagiotou and Anna S. Bosman},
-      year={2023},
-      eprint={2303.09627},
-      archivePrefix={arXiv},
-      primaryClass={eess.IV}
+```bibtex
+@article{panagiotou2024denoising,
+title = {Denoising diffusion post-processing for low-light image enhancement},
+journal = {Pattern Recognition},
+pages = {110799},
+year = {2024},
+issn = {0031-3203},
+doi = {https://doi.org/10.1016/j.patcog.2024.110799},
+url = {https://www.sciencedirect.com/science/article/pii/S0031320324005508},
+author = {Savvas Panagiotou and Anna S. Bosman}
 }
 ```
 

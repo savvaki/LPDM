@@ -93,6 +93,7 @@ Set up and activate the virtual [conda](https://docs.anaconda.com/anaconda/insta
 @article{panagiotou2024denoising,
 title = {Denoising diffusion post-processing for low-light image enhancement},
 journal = {Pattern Recognition},
+volume = {156},
 pages = {110799},
 year = {2024},
 issn = {0031-3203},

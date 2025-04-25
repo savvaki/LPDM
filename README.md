@@ -1,6 +1,7 @@
 # Denoising Diffusion Post-Processing for Low-Light Image Enhancement
 --------
 ## News
+- Accepted for presentation in the Journal to Conference track at 2025 International Joint Conference on Neural Networks (IJCNN 2025) 🥳
 - The article is officially published in Pattern Recognition and is openly accessible [[here](https://doi.org/10.1016/j.patcog.2024.110799)] 🎉
 --------
 [![paper](https://img.shields.io/badge/arXiv-Paper-<COLOR>.svg)](https://doi.org/10.1016/j.patcog.2024.110799)
